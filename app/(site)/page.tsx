@@ -7,6 +7,9 @@ export default function Home() {
       </div>
       <div className="aspect-video rounded-lg bg-secondary"></div>
       <div className="aspect-video rounded-lg bg-secondary"></div>
+      <div className="aspect-video rounded-lg bg-secondary"></div>
+      <div className="aspect-video rounded-lg bg-secondary"></div>
+      <div className="aspect-video rounded-lg bg-secondary"></div>
     </div>
   );
 }
