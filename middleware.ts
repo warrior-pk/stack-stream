@@ -1,21 +1,11 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
-import { NextResponse } from 'next/server'
 
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)', "/", '/search(.*)', '/watch/(.*)'])
 
 export default clerkMiddleware(async (auth, request) => {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-url', request.url);
-  console.log('from middleware', request.url)
   if (!isPublicRoute(request)) {
     await auth.protect()
   }
-  return NextResponse.next({
-    request: {
-      ...request,
-      headers: requestHeaders,
-    },
-  })
 })
 
 export const config = {

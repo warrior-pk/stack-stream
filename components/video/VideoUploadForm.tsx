@@ -111,10 +111,9 @@ const VideoUploadForm = () => {
     }
   };
   return (
-    <div>
-      <h1 className="text-2xl font-semibold">Upload Video</h1>
+    <div className="my-6">
       <form onSubmit={handleSubmit(handleUpload)}>
-        <div className="flex items-center justify-center w-full flex-col">
+        <div className="flex justify-center items-start w-full flex-col gap-4">
           <label
             htmlFor="video-dropzone"
             className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer bg-base-200 border-base-300 hover:bg-base-100 hover:border-base-200"
@@ -158,26 +157,26 @@ const VideoUploadForm = () => {
           {errors.videos && (
             <span className="text-error">{errors.videos.message || ""}</span>
           )}
+          <button
+            className="btn btn-primary btn-lg"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Uploading..." : "Upload"}
+          </button>
+          {isSubmitting && (
+            <>
+              Uploading video {currentUploadingVideo}/{totalVideosToUpload}
+              <progress
+                className="progress progress-success w-56"
+                value={currentUploadingVideoProgress}
+                max="100"
+              />
+              &nbsp;
+              {currentUploadingVideoProgress}%
+            </>
+          )}
         </div>
-        <button
-          className="btn btn-primary"
-          type="submit"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Uploading..." : "Upload"}
-        </button>
-        {isSubmitting && (
-          <>
-            Uploading video {currentUploadingVideo}/{totalVideosToUpload}
-            <progress
-              className="progress progress-success w-56"
-              value={currentUploadingVideoProgress}
-              max="100"
-            />
-            &nbsp;
-            {currentUploadingVideoProgress}%
-          </>
-        )}
       </form>
     </div>
   );
